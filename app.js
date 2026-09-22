@@ -98,7 +98,7 @@ v1Router.get("/students/:id", async (req, res, next) => {
   }
 });
 
-// 3. POST: เพิ่มข้อมูลนักศึกษาใหม่
+// // 3. POST: เพิ่มข้อมูลนักศึกษาใหม่
 // v1Router.post("/students", async (req, res, next) => {
 //   const { name, major, email } = req.body;
 //   try {
@@ -183,19 +183,19 @@ v1Router.post("/students/:id/enrollments", async (req, res, next) => {
   }
 });
 
-// 4. PUT: แก้ไขข้อมูลนักศึกษา
-v1Router.put("/students/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const { name, major } = req.body;
+// // 4. PUT: แก้ไขข้อมูลนักศึกษา
+// v1Router.put("/students/:id", (req, res) => {
+//   const id = Number(req.params.id);
+//   const { name, major } = req.body;
   
-  if (!name || !major) {
-    return res
-      .status(400)
-      .json({ message: "กรุณาระบุ name และ major ให้ครบถ้วน" });
-  }
+//   if (!name || !major) {
+//     return res
+//       .status(400)
+//       .json({ message: "กรุณาระบุ name และ major ให้ครบถ้วน" });
+//   }
 
-  res.status(200).json({ message: "แก้ไขข้อมูลสำเร็จ" });
-});
+//   res.status(200).json({ message: "แก้ไขข้อมูลสำเร็จ" });
+// });
 
 // 5. DELETE: ลบข้อมูลนักศึกษา
 v1Router.delete(
