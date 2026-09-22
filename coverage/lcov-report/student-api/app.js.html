@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.85% </span>
+                <span class="strong">48% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>61/136</span>
+                <span class='fraction'>60/125</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.55% </span>
+                <span class="strong">41.02% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>16/45</span>
+                <span class='fraction'>16/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">26.66% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/15</span>
+                <span class='fraction'>4/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.85% </span>
+                <span class="strong">48% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>61/136</span>
+                <span class='fraction'>60/125</span>
             </div>
         
             
@@ -510,31 +510,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -856,33 +856,33 @@ v1Router.get("/students/:id", <span class="fstat-no" title="function not covered
 });
 &nbsp;
 // 3. POST: เพิ่มข้อมูลนักศึกษาใหม่
-v1Router.post("/students", <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {
-  const { name, major, email } = <span class="cstat-no" title="statement not covered" >req.body;</span>
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const [result] = <span class="cstat-no" title="statement not covered" >await pool.query(</span>
-      "INSERT INTO students (name, major, email) VALUES (?, ?, ?)",
-      [name, major, email],
-    );
+// v1Router.post("/students", async (req, res, next) =&gt; {
+//   const { name, major, email } = req.body;
+//   try {
+//     const [result] = await pool.query(
+//       "INSERT INTO students (name, major, email) VALUES (?, ?, ?)",
+//       [name, major, email],
+//     );
 &nbsp;
-    // ใช้ redisClient กรณีที่จำเป็น แต่ตัว connectRedis จะย้ายไปอยู่ที่ server.js
-    const { redisClient } = <span class="cstat-no" title="statement not covered" >require("./cache");</span>
-<span class="cstat-no" title="statement not covered" >    if (redisClient &amp;&amp; redisClient.isOpen) {</span>
-<span class="cstat-no" title="statement not covered" >      await redisClient.del("students:all");</span>
-    }
+//     // ใช้ redisClient กรณีที่จำเป็น แต่ตัว connectRedis จะย้ายไปอยู่ที่ server.js
+//     const { redisClient } = require("./cache");
+//     if (redisClient &amp;&amp; redisClient.isOpen) {
+//       await redisClient.del("students:all");
+//     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    res.status(201).json({</span>
-      message: "เพิ่มข้อมูลสำเร็จ",
-      data: { id: result.insertId, name, major, email },
-    });
-  } catch (err) {
-<span class="cstat-no" title="statement not covered" >    if (err.code === "ER_DUP_ENTRY") {</span>
-<span class="cstat-no" title="statement not covered" >      return res.status(409).json({</span>
-        error: { code: "DUPLICATE_EMAIL", message: "อีเมลนี้มีอยู่ในระบบแล้ว" },
-      });
-    }
-<span class="cstat-no" title="statement not covered" >    next(err);</span>
-  }
-});
+//     res.status(201).json({
+//       message: "เพิ่มข้อมูลสำเร็จ",
+//       data: { id: result.insertId, name, major, email },
+//     });
+//   } catch (err) {
+//     if (err.code === "ER_DUP_ENTRY") {
+//       return res.status(409).json({
+//         error: { code: "DUPLICATE_EMAIL", message: "อีเมลนี้มีอยู่ในระบบแล้ว" },
+//       });
+//     }
+//     next(err);
+//   }
+// });
 &nbsp;
 // POST: ลงทะเบียนเรียน (แก้ไขแก้เติม slash เป็น /students/:id/enrollments)
 v1Router.post("/students/:id/enrollments", <span class="fstat-no" title="function not covered" >as</span>ync (req, res, next) =&gt; {
@@ -1108,7 +1108,7 @@ module.exports = app;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-15T05:09:12.561Z
+                at 2026-09-22T03:39:49.127Z
             </div>
         <script src="../prettify.js"></script>
         <script>

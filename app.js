@@ -99,33 +99,33 @@ v1Router.get("/students/:id", async (req, res, next) => {
 });
 
 // 3. POST: เพิ่มข้อมูลนักศึกษาใหม่
-v1Router.post("/students", async (req, res, next) => {
-  const { name, major, email } = req.body;
-  try {
-    const [result] = await pool.query(
-      "INSERT INTO students (name, major, email) VALUES (?, ?, ?)",
-      [name, major, email],
-    );
+// v1Router.post("/students", async (req, res, next) => {
+//   const { name, major, email } = req.body;
+//   try {
+//     const [result] = await pool.query(
+//       "INSERT INTO students (name, major, email) VALUES (?, ?, ?)",
+//       [name, major, email],
+//     );
 
-    // ใช้ redisClient กรณีที่จำเป็น แต่ตัว connectRedis จะย้ายไปอยู่ที่ server.js
-    const { redisClient } = require("./cache");
-    if (redisClient && redisClient.isOpen) {
-      await redisClient.del("students:all");
-    }
+//     // ใช้ redisClient กรณีที่จำเป็น แต่ตัว connectRedis จะย้ายไปอยู่ที่ server.js
+//     const { redisClient } = require("./cache");
+//     if (redisClient && redisClient.isOpen) {
+//       await redisClient.del("students:all");
+//     }
 
-    res.status(201).json({
-      message: "เพิ่มข้อมูลสำเร็จ",
-      data: { id: result.insertId, name, major, email },
-    });
-  } catch (err) {
-    if (err.code === "ER_DUP_ENTRY") {
-      return res.status(409).json({
-        error: { code: "DUPLICATE_EMAIL", message: "อีเมลนี้มีอยู่ในระบบแล้ว" },
-      });
-    }
-    next(err);
-  }
-});
+//     res.status(201).json({
+//       message: "เพิ่มข้อมูลสำเร็จ",
+//       data: { id: result.insertId, name, major, email },
+//     });
+//   } catch (err) {
+//     if (err.code === "ER_DUP_ENTRY") {
+//       return res.status(409).json({
+//         error: { code: "DUPLICATE_EMAIL", message: "อีเมลนี้มีอยู่ในระบบแล้ว" },
+//       });
+//     }
+//     next(err);
+//   }
+// });
 
 // POST: ลงทะเบียนเรียน (แก้ไขแก้เติม slash เป็น /students/:id/enrollments)
 v1Router.post("/students/:id/enrollments", async (req, res, next) => {
